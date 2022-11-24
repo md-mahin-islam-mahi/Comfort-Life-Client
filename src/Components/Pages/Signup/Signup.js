@@ -79,7 +79,7 @@ const Signup = () => {
                             </div>
                             <p className="text-sm text-gray-500">You have choosen to create a <span className='text-primary font-semibold'>{userType}</span> account</p>
                             <div className="form-control mt-6">
-                                <input className='btn btn-primary' type="submit" value="Sign Up" />
+                                <input className='btn btn-primary text-white text-xl' type="submit" value="Sign Up" />
                             </div>
                             <p className='text-gray-500'>Already have an account? Please <Link to="/login"><span className='text-primary font-semibold'>Login</span></Link></p>
                             <div className="divider">OR</div>

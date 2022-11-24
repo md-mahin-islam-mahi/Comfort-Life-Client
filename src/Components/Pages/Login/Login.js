@@ -38,7 +38,7 @@ const Login = () => {
                                 <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password", { required: true })} />
                             </div>
                             <div className="form-control mt-6">
-                                <input className='btn btn-primary' type="submit" value="Login" />
+                                <input className='btn btn-primary text-white text-xl' type="submit" value="Login" />
                             </div>
                             <p className='text-gray-500'>Don't have an account? Please <Link to="/signup"><span className='text-primary font-semibold'>Sign Up</span></Link></p>
                             <div className="divider">OR</div>
