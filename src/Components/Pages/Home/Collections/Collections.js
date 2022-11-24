@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../../Context/AuthProvider';
 import CollectionsCard from './CollectionsCard';
 
 const Collections = () => {
     const furnitures = useLoaderData();
-    console.log(furnitures);
+    const { loader } = useContext(AuthContext);
+
+    if (loader) {
+        return <div>Loading...</div>
+    }
     return (
         <div>
                 <h2 className="text-3xl text-gray-500 font-semibold my-10">Our Collections</h2>

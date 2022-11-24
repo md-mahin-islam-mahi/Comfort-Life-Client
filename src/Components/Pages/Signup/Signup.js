@@ -87,7 +87,7 @@ const Signup = () => {
                                 <button className='btn btn-accent btn-outline w-full'>Signup with Google</button>
                             </div>
                         </div>
-                        </form>
+                    </form>
                     </div>
                 </div>
             </div>

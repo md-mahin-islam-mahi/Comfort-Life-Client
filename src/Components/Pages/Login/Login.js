@@ -6,17 +6,24 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, loader } = useContext(AuthContext);
     const navigateTo = useNavigate();
+
+    if (loader) {
+        return <div>Loading...</div>;
+    }
 
     const loginUser = data => {
         signIn(data.email, data.password)
-        .then(result => {
-            // console.log(result)
-        })
-        .catch(errors => console.log(errors));
-        toast.success("Login successful")
-        navigateTo('/');
+            .then(result => {
+                const user = result.user;
+                if (user.uid) {
+                    toast.success("Login successful")
+                    navigateTo('/');
+                }
+            })
+            .catch(errors => console.log(errors));
+        
     }
 
     return (
