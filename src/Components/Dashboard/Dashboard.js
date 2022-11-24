@@ -3,19 +3,15 @@ import { Link, Outlet } from 'react-router-dom';
 import Header from '../Shared/Header/Header';
 
 const Dashboard = () => {
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
             .then(res => res.json())
-            .then(data => setUser(data));
+            .then(data => data.map(users => setUser(users)));
     }, [])
 
-    const listItems = <>
-        <li>Hi</li>
-        <li>Hi</li>
-        <li>Hi</li>
-    </>
+console.log(user);
 
     return (
         <div>
@@ -28,7 +24,7 @@ const Dashboard = () => {
                 <div className="drawer-side">
                     <label className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        {listItems}
+                        
                     </ul>
 
                 </div>
