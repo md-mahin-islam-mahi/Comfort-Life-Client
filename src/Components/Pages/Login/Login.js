@@ -12,7 +12,7 @@ const Login = () => {
     const loginUser = data => {
         signIn(data.email, data.password)
         .then(result => {
-            console.log(result)
+            // console.log(result)
         })
         .catch(errors => console.log(errors));
         toast.success("Login successful")
