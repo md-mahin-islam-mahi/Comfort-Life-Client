@@ -9,20 +9,19 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState("");
     const [loader, setLoader] = useState(true);
 
+    //* Create a new user;
     const createUser = (email, password) => {
         setLoader(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    //* sign in method;
     const signIn = (email, password) => {
         setLoader(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const updateUser = (userInfo) => {
-        return updateProfile(auth.currentUser, userInfo)
-    }
-
+    //* sign out method;
     const signOutUser = () => {
         setLoader(true);
         return signOut(auth);
@@ -39,7 +38,6 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         createUser,
-        updateUser,
         signIn,
         signOutUser,
         loader

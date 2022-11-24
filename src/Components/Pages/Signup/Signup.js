@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
     const [userType, setUserType] = useState('buyer');
@@ -28,6 +29,7 @@ const Signup = () => {
             console.log(user);
         })
         .catch(err => console.error(err));
+        toast.success("User created successfully");
         navigate("/");
 
         fetch('http://localhost:5000/users', {
