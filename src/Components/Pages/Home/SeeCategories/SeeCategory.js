@@ -8,7 +8,7 @@ const SeeCategory = () => {
     const furnitures = useLoaderData();
 
     if(loader) {
-        return <div>Loading...</div>
+        return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
     }
 
     return (

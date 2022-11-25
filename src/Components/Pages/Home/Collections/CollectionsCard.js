@@ -1,13 +1,13 @@
 import React from 'react';
 
 const CollectionsCard = ({ option, setFruniture, furniture }) => {
-    
+
 
     const { _id, productName, condition, image, } = option;
 
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl image-full">
+        <div className="card card-side bg-base-100 shadow-xl">
             <figure><img src={image} alt={productName} /></figure>
             <div className="card-body">
                 <h2 className="card-title">{productName}</h2>
@@ -21,5 +21,6 @@ const CollectionsCard = ({ option, setFruniture, furniture }) => {
         </div>
     );
 };
+
 
 export default CollectionsCard;

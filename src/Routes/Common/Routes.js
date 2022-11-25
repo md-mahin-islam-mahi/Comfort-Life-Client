@@ -7,7 +7,7 @@ import Home from "../../Components/Pages/Home/Home";
 import Login from "../../Components/Pages/Login/Login";
 import Signup from "../../Components/Pages/Signup/Signup";
 import Main from "../../Layouts/Main";
-import Filtered from "../../Components/Pages/Home/FilteredCategory/Filtered";
+import MyProducts from "../../Components/Pages/MyProducts/MyProducts";
 
 const router = createBrowserRouter([
     {
@@ -36,14 +36,10 @@ const router = createBrowserRouter([
                 element: <SeeCategory></SeeCategory>,
                 loader: () => fetch('http://localhost:5000/categories')
             },
-            {
-                path: "/filtered/:name",
-                element: <Filtered></Filtered>,
-            },
-            {
-                path: "/add-item",
-                element: <AddItem></AddItem>
-            }
+            // {
+            //     path: "/add-item",
+            //     element: <AddItem></AddItem>
+            // }
         ]
     },
     {
@@ -51,8 +47,12 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
             {
-                path: "/dashboard/add-items"
-                
+                path: "/dashboard/add-item",
+                element: <AddItem></AddItem>
+            },
+            {
+                path: "/dashboard/my-products",
+                element: <MyProducts></MyProducts>
             }
         ],
     }

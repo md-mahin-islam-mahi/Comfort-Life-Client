@@ -1,10 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Header from '../Shared/Header/Header';
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext)
+    const [currentUser, setCurrentUser] = useState(null)
+    const { loader, user } = useContext(AuthContext)
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setCurrentUser(data)
+            });
+    }, [user.email])
+
+    if (loader) {
+        return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
+    }
 
     return (
         <div>
@@ -16,8 +29,26 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        <li><Link to="/add-item">Add Items</Link></li>
+                    <ul className="menu p-4 w-80 text-primary text-2xl font-semibold">
+                        <li>
+                            {
+                                currentUser?.type === "seller" &&
+                                <>
+                                    <Link to="/dashboard/add-item">Add a Product</Link>
+                                    <Link to="/dashboard/my-products">My Products</Link>
+                                    <Link>My Buyers</Link>
+                                </>
+                            }
+                        </li>
+
+                        <li>
+                            {
+                                currentUser?.type === "buyer" &&
+                                <>
+                                    <Link>My Orders</Link>
+                                </>
+                            }
+                        </li>
                     </ul>
 
                 </div>

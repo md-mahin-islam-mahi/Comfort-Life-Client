@@ -74,7 +74,7 @@ const Signup = () => {
                                 </label>
                                 <select onChange={e => setUserType(e.target.value)} className='outline-none text-gray-500 text-xl' name="User Type">
                                     <option value="buyer">Buyer</option>
-                                    <option value="saller">Saller</option>
+                                    <option value="seller">Seller</option>
                                 </select>
                             </div>
                             <p className="text-sm text-gray-500">You have choosen to create a <span className='text-primary font-semibold'>{userType}</span> account</p>
