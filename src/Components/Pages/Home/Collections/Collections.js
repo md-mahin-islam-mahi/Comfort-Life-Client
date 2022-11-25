@@ -1,13 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/AuthProvider';
 import CollectionsCard from './CollectionsCard';
 import DetailModa from './DetailModa';
 
 const Collections = () => {
-    const furnitures = useLoaderData()
+    // const [furnitures, setFrunitures] = useState()
     const [furniture, setFruniture] = useState({});
     const { loader } = useContext(AuthContext);
+    const furnitures = useLoaderData()
+
+    useEffect( () => {
+        fetch('`')
+    }, [])
 
     if (loader) {
         return <div>Loading...</div>

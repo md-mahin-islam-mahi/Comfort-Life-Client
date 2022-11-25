@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 import AddItem from "../../Components/Pages/AddItem/AddItem";
 import Collections from "../../Components/Pages/Home/Collections/Collections";
+import SeeCategory from "../../Components/Pages/Home/SeeCategories/SeeCategory";
 import Home from "../../Components/Pages/Home/Home";
 import Login from "../../Components/Pages/Login/Login";
 import Signup from "../../Components/Pages/Signup/Signup";
 import Main from "../../Layouts/Main";
+import Filtered from "../../Components/Pages/Home/FilteredCategory/Filtered";
 
 const router = createBrowserRouter([
     {
@@ -25,9 +27,18 @@ const router = createBrowserRouter([
                 element: <Signup></Signup>
             },
             {
-                path: "/collections",
+                path: "/collections/:name",
                 element: <Collections></Collections>,
-                loader: () => fetch('http://localhost:5000/furniture')
+                loader: ({params}) => fetch(`http://localhost:5000/item/${params.name}`)
+            },
+            {
+                path: "/category",
+                element: <SeeCategory></SeeCategory>,
+                loader: () => fetch('http://localhost:5000/categories')
+            },
+            {
+                path: "/filtered/:name",
+                element: <Filtered></Filtered>,
             },
             {
                 path: "/add-item",

@@ -43,7 +43,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Link to="/collections">
+            <Link to="/category">
                 <button className='btn btn-outline btn-primary mb-20'>See More</button>
             </Link>
         </div>
