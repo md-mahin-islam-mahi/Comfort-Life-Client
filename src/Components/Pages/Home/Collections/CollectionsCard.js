@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const CollectionsCard = ({ furniture }) => {
+const CollectionsCard = ({ option, setFruniture, furniture }) => {
+    
 
-    const { _id, productName, condition, image, } = furniture;
+    const { _id, productName, condition, image, } = option;
 
 
     return (
@@ -13,9 +13,9 @@ const CollectionsCard = ({ furniture }) => {
                 <h2 className="card-title">{productName}</h2>
                 <p>{condition}</p>
                 <div className="card-actions justify-end">
-                    <Link to={`/furnitures/${_id}`}>
-                        <button className="btn btn-primary btn-sm">Details</button>
-                    </Link>
+                    <button onClick={() => setFruniture(option)} className="btn btn-primary btn-sm">
+                        <label htmlFor="detail-modal">Detail</label>
+                    </button>
                 </div>
             </div>
         </div>
