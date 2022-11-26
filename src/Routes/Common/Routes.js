@@ -12,7 +12,6 @@ import MyOrders from "../../Components/Dashboard/MyOrders/MyOrders";
 import PaymentPage from "../../Components/Dashboard/Payment/PaymentPage";
 import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
 import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
-import AdminRoute from "../../Components/Dashboard/Admin/AdminRoute";
 import PrivateRoute from "../Private/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -74,10 +73,6 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/admin/all-seller",
                 element: <AllSeller></AllSeller>
-            },
-            {
-                path: "/dashboard/admin",
-                element: <AdminRoute></AdminRoute>
             }
         ],
     }

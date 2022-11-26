@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     return (
         <div>
-            <div>
+            <div className='w-full'>
                 <div className="hero min-h-screen mb-20" style={{ backgroundImage: `url("https://w0.peakpx.com/wallpaper/911/193/HD-wallpaper-bedroom-interior-chest-dressing-table.jpg")` }}>
                     <div className="hero-overlay bg-opacity-90"></div>
                     <div className="hero-content text-center text-neutral-content">

@@ -6,6 +6,7 @@ import ProductItems from './ProductItems';
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
 
+    // useQuery to load data- 1
     const { data: myProducts, isLoading } = useQuery({
         queryKey: ['my-products'],
         queryFn: () => fetch(`http://localhost:5000/furniture/${user.email}`)

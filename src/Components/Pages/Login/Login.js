@@ -16,6 +16,7 @@ const Login = () => {
     }
 
     const loginUser = data => {
+
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -24,8 +25,7 @@ const Login = () => {
                     navigateTo(from, { replace: true });
                 }
             })
-            .catch(errors => console.log(errors));
-        
+
     }
 
     return (
@@ -39,12 +39,14 @@ const Login = () => {
                                     <span className="label-text text-gray-500">Email</span>
                                 </label>
                                 <input type="text" placeholder="email" className="input input-bordered text-black" {...register("email", { required: true })} />
+                                {errors.email && <div className="error text-red-600">{errors.email.message}</div>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-gray-500">Password</span>
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password", { required: true })} />
+
                             </div>
                             <div className="form-control mt-6">
                                 <input className='btn btn-primary text-white text-xl' type="submit" value="Login" />

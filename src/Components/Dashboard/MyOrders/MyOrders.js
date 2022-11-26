@@ -7,11 +7,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const MyOrders = () => {
     const { user, loader } = useContext(AuthContext);
 
-    // const url = `http://localhost:5000/orders?email=${user.email}`
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => setFurnitures(data));
-
+    // useQuery to load data-2
     const { data: furnitures = [], refetch } = useQuery({
         queryKey: 'myOrders',
         queryFn: async () => {
