@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../Context/AuthProvider';
@@ -14,6 +13,7 @@ const DetailModa = ({ furniture }) => {
             sellerName: salerName,
             sellerEmail: email,
             buyerEmail: user.email,
+            price: price
         }
 
         fetch(`http://localhost:5000/orders`, {
