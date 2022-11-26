@@ -13,6 +13,7 @@ import PaymentPage from "../../Components/Dashboard/Payment/PaymentPage";
 import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
 import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
 import PrivateRoute from "../Private/PrivateRoute";
+import Blog from "../../Components/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
                 path: "/category",
                 element: <SeeCategory></SeeCategory>,
                 loader: () => fetch('http://localhost:5000/categories')
+            },
+            {
+                path: "/blog",
+                element: <Blog></Blog>
             }
         ]
     },

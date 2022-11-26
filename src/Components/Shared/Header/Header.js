@@ -18,6 +18,7 @@ const Header = () => {
         {
             user?.uid ? <li><p onClick={signOut}>Log Out</p></li> : <li><Link to="/login">Login</Link></li>
         }
+        <li><Link to="/blog">Blog</Link></li>
     </>
     return (
         <div className="navbar text-xl">
