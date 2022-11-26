@@ -12,24 +12,23 @@ const MyProducts = () => {
             .then(response => response.json())
     });
 
-    if(isLoading) {
+    if (isLoading) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
     }
 
     return (
-        <div>
-            <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                    <tbody>
-                        {
-                            myProducts.map(products => <ProductItems
-                                key={products._id}
-                                products={products}
-                            ></ProductItems>)
-                        }
-                    </tbody>
-                </table>
-            </div>
+
+        <div className="overflow-x-auto w-full">
+            <table className="table w-full">
+                <tbody>
+                    {
+                        myProducts.map(products => <ProductItems
+                            key={products._id}
+                            products={products}
+                        ></ProductItems>)
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };

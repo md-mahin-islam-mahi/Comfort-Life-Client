@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -7,35 +7,47 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const AddItem = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const [itemType, setItemType] = useState('')
 
     const imageKey = process.env.REACT_APP_imgbb_key;
 
     const addItems = data => {
+        const product = {
+            salerName: data.salerName,
+            location: data.location,
+            phone: data.phone,
+            email: data.email,
+            productName: itemType,
+            price: data.price,
+            condition: data.condition,
+            description: data.description,
+        }
+
         fetch('http://localhost:5000/furniture', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(product)
         })
-        .then(res => res.json())
-        .catch(err => console.error(err));
+            .then(res => res.json())
+            .catch(err => console.error(err));
         toast.success('Added items successfully')
         navigate("/")
 
-        const image = data.image[0];
-        const formData = new FormData();
-        formData.append('Image', image);
+        // const image = data.image[0];
+        // const formData = new FormData();
+        // formData.append('Image', image);
 
-        fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
-            method: 'POST',
-            body: formData
-        })
-           .then(res => res.json())
-           .then(imgData => {
-            console.log(imgData);
-           })
+        // fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(imgData => {
+        //         console.log(imgData);
+        //     })
     }
 
     return (
@@ -71,9 +83,16 @@ const AddItem = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="text-xl text-gray-600">Product Name</span>
+                                    <span className="text-xl text-gray-600">Choose Item</span>
                                 </label>
-                                <input type="text" placeholder="Product Name" className="input input-bordered text-black" {...register("productName", { required: true })} />
+                                <select onChange={e => setItemType(e.target.value)} className='outline-none text-gray-500 text-xl' name="User Type">
+                                    <option value="Bed">Bed</option>
+                                    <option value="Sofa">Sofa</option>
+                                    <option value="Dressing Table">Dressing Table</option>
+                                    <option value="Table">Table</option>
+                                    <option value="Cupboard">Cupboard</option>
+                                    <option value="Chair">Chair</option>
+                                </select>
                             </div>
                             <div className="form-control">
                                 <label className="label">

@@ -14,6 +14,7 @@ const Dashboard = () => {
                 setCurrentUser(data)
             });
     }, [user.email])
+    console.log(currentUser);
 
     if (loader) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
@@ -45,7 +46,17 @@ const Dashboard = () => {
                             {
                                 currentUser?.type === "buyer" &&
                                 <>
-                                    <Link>My Orders</Link>
+                                    <Link to="/dashboard/my-orders">My Orders</Link>
+                                </>
+                            }
+                        </li>
+
+                        <li>
+                            {
+                                currentUser?.type === "admin" &&
+                                <>
+                                    <Link to="/dashboard/admin/all-buyers">All Buyers</Link>
+                                    <Link to="/dashboard/admin/all-seller">All Sellers</Link>
                                 </>
                             }
                         </li>

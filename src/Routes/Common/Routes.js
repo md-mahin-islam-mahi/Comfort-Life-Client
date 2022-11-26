@@ -1,13 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Components/Dashboard/Dashboard";
-import AddItem from "../../Components/Pages/AddItem/AddItem";
+import AddItem from "../../Components/Dashboard/AddItem/AddItem";
 import Collections from "../../Components/Pages/Home/Collections/Collections";
 import SeeCategory from "../../Components/Pages/Home/SeeCategories/SeeCategory";
 import Home from "../../Components/Pages/Home/Home";
 import Login from "../../Components/Pages/Login/Login";
 import Signup from "../../Components/Pages/Signup/Signup";
 import Main from "../../Layouts/Main";
-import MyProducts from "../../Components/Pages/MyProducts/MyProducts";
+import MyProducts from "../../Components/Dashboard/MyProducts/MyProducts";
+import MyOrders from "../../Components/Dashboard/MyOrders/MyOrders";
+import PaymentPage from "../../Components/Dashboard/Payment/PaymentPage";
+import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
+import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
 
 const router = createBrowserRouter([
     {
@@ -35,11 +39,7 @@ const router = createBrowserRouter([
                 path: "/category",
                 element: <SeeCategory></SeeCategory>,
                 loader: () => fetch('http://localhost:5000/categories')
-            },
-            // {
-            //     path: "/add-item",
-            //     element: <AddItem></AddItem>
-            // }
+            }
         ]
     },
     {
@@ -53,6 +53,22 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-products",
                 element: <MyProducts></MyProducts>
+            },
+            {
+                path: "/dashboard/my-orders",
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: "/dashboard/payment",
+                element: <PaymentPage></PaymentPage>
+            },
+            {
+                path: "/dashboard/admin/all-buyers",
+                element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: "/dashboard/admin/all-seller",
+                element: <AllSeller></AllSeller>
             }
         ],
     }

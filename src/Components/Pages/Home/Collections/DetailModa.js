@@ -1,8 +1,30 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../../Context/AuthProvider';
 
 const DetailModa = ({ furniture }) => {
     const { productName, condition, image, price, salerName, email, phone, location, year } = furniture;
+    const {user} = useContext(AuthContext);
 
+    const addToWishlist = () => {
+
+        const product = {
+            productName,
+            sellerName: salerName,
+            sellerEmail: email,
+            buyerEmail: user.email,
+        }
+
+        fetch(`http://localhost:5000/orders`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+        toast.success("Product added to wishlist successfully");
+    }
 
     return (
         <>
@@ -30,7 +52,7 @@ const DetailModa = ({ furniture }) => {
                                 </div>
                             </div>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary btn-sm text-sm text-white font-semibold">Add to wishlist</button>
+                                <button onClick={() => addToWishlist(email)} className="btn btn-primary btn-sm text-sm text-white font-semibold">Add to wishlist</button>
                             </div>
                         </div>
                     </div>
