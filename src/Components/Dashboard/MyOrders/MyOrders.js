@@ -35,7 +35,6 @@ const MyOrders = () => {
             })
     }
 
-
     if (loader) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
     }
@@ -63,9 +62,14 @@ const MyOrders = () => {
 
                                 </td>
                                 <td>
-                                    <Link to={`/dashboard/payment/${furniture.previousId}`}>
-                                        <button className="btn-primary btn-sm rounded-lg text-white font-semibold">Purchase</button>
-                                    </Link>
+                                    {
+                                        furniture.payment === "true" ? <p>Paid</p> : <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
+                                        <Link to={`/dashboard/payment/${furniture.previousId}`}>
+                                            Purchase
+                                        </Link>
+                                    </button>
+                                    }
+                                    
                                 </td>
                                 <td><p onClick={() => deleteOrder(furniture._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
                                 </td>

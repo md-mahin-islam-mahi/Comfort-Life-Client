@@ -51,7 +51,7 @@ const MyProducts = () => {
 
                                 </td>
                                 <td>
-                                    <button onClick={() => addvertisement(products._id)} className="btn-primary btn-sm rounded-lg text-white font-semibold">Addvertisement</button>
+                                    <button onClick={() => addvertisement(products._id)} className="btn-primary btn-sm rounded-lg text-white font-semibold">Advertisement</button>
                                 </td>
                             </tr>)
                         }

@@ -9,46 +9,51 @@ const AddItem = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext);
     const [itemType, setItemType] = useState('Bed')
-
     const imageKey = process.env.REACT_APP_imgbb_key;
 
     const addItems = data => {
-        const product = {
-            salerName: data.salerName,
-            location: data.location,
-            phone: data.phone,
-            email: data.email,
-            productName: itemType,
-            price: data.price,
-            condition: data.condition,
-            description: data.description,
-        }
 
-        fetch('http://localhost:5000/furniture', {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append("image", image);
+
+        fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(product)
+            body: formData
         })
             .then(res => res.json())
-            .catch(err => console.error(err));
-        toast.success('Added items successfully')
-        // navigate("/")
-        // console.log(itemType);
+            .then(imgData => {
+                if (imgData.success === true) {
+                    console.log(imgData.data.url);
+                    const product = {
+                        salerName: data.salerName,
+                        location: data.location,
+                        phone: data.phone,
+                        email: data.email,
+                        productName: itemType,
+                        price: data.price,
+                        condition: data.condition,
+                        description: data.description,
+                        image: imgData.data.url
+                    }
 
-        // const image = data.image[0];
-        // const formData = new FormData();
-        // formData.append('Image', image);
-
-        // fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        //     .then(res => res.json())
-        //     .then(imgData => {
-        //         console.log(imgData);
-        //     })
+                    fetch('http://localhost:5000/furniture', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if(data.acknowledged === true) {
+                                toast.success('Added items successfully');
+                                navigate("/");
+                            }
+                        })
+                };
+            })
     }
 
     return (

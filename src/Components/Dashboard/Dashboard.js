@@ -58,8 +58,8 @@ const Dashboard = () => {
                             {
                                 currentUser?.type === "admin" &&
                                 <>
-                                    <Link to="/dashboard/admin/all-buyers">All Buyers</Link>
-                                    <Link to="/dashboard/admin/all-seller">All Sellers</Link>
+                                    <Link to="/dashboard/admin/all-buyers/buyer">All Buyers</Link>
+                                    <Link to="/dashboard/admin/all-seller/seller">All Sellers</Link>
                                 </>
                             }
                         </li>

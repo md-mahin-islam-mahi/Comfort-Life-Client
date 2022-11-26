@@ -28,9 +28,9 @@ const Home = () => {
             </div>
 
             {/* advertisement section */}
-            <div className='mx-auto'>
+            <div className=''>
                 <h4 className="text-4xl text-gray-500 font-semibold mb-10">Available Products</h4>
-                <div>
+                <div className='w-full'>
                     {
                         allFurnitures.map(furniture => <Advertisement
                             key={furniture._id}
@@ -40,16 +40,16 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='my-5'>
+            <div className='my-5 mx-auto text-center'>
                 <h4 className="text-4xl text-gray-500 font-semibold">Our Products Collection</h4>
                 <p className="text-xl text-gray-400 mt-5">You will find the best resalable furnitures here</p>
             </div>
 
             <div>
-                <div className="hero my-20">
+                <div className="hero my-20 mx-auto">
                     <div className="hero-content flex-col justify-between lg:flex-row-reverse">
-                        <img src="https://i.ibb.co/5kHbr1w/sofa.jpg" alt='sofa' className="max-w-lg rounded-lg shadow-2xl lg:ml-40" />
-                        <div className='lg:text-start w-1/2 '>
+                        <img src="https://i.ibb.co/5kHbr1w/sofa.jpg" alt='sofa' className="max-w-xm rounded-lg shadow-2xl lg:ml-40" />
+                        <div className='lg:text-start lg:w-1/2 '>
                             <h1 className="text-5xl font-bold text-gray-500">Best Sofa Set!</h1>
                             <p className="py-6 w-96 text-gray-400">We have the best resalable sofa sets in our collection. We collect the best quality products and sel to you.</p>
                         </div>
@@ -57,10 +57,10 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="hero my-20">
+            <div className="hero my-20 mx-auto">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img src="https://i.ibb.co/bQx7kLm/bed.jpg" alt='bed' className="max-w-lg rounded-lg shadow-2xl lg:mr-40" />
-                    <div className='lg:text-start w-1/2 '>
+                    <img src="https://i.ibb.co/bQx7kLm/bed.jpg" alt='bed' className="max-w-xm rounded-lg shadow-2xl lg:mr-40" />
+                    <div className='lg:text-start lg:w-1/2 '>
                         <h1 className="text-5xl font-bold text-gray-500">Attractice Bed Set!</h1>
                         <p className="py-6 w-96 text-gray-400">We provide the best resalable bed sets in our collection. We collect the best quality products and sel to you.</p>
                     </div>

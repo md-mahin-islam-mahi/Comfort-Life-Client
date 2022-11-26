@@ -7,39 +7,55 @@ import toast from 'react-hot-toast';
 const Signup = () => {
     const [userType, setUserType] = useState('buyer');
     const { register, handleSubmit } = useForm();
-    const {createUser} = useContext(AuthContext);
+    const {createUser, loader, updateUserProfile} = useContext(AuthContext);
     const navigate = useNavigate();
 
+    if(loader) {
+        return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
+    }
+    
     const handleSignup = data => {
         const email = data.email;
         const password = data.password;
-        const displayName = data.name;
-        const type = userType;
-
-        const user = {
-            displayName,
-            email,
-            type
-        }
-        console.log(user);
+        // const displayName = data.name;
+        // const type = userType;
 
         createUser(email, password)
         .then(result => {
-            const user = result.user;
-            console.log(user);
+            const userInfo = {
+                displayName: data.name,
+            }
+            updateUserProfile(userInfo)
+            .then(() => {})
+            .catch(err => console.error(err));
+            saveUser(data.name, data.email, userType)
+            
         })
         .catch(err => console.error(err));
         toast.success("User created successfully");
         navigate("/");
 
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(user)
+        const saveUser = (displayName, email, type) => {
+            const user = {displayName, email, type};
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(res => res.json())
+            .catch(err => console.error(err));
+        }
 
-        })
+        // fetch('http://localhost:5000/users', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(user)
+
+        // })
     };
 
 
