@@ -14,7 +14,6 @@ const Dashboard = () => {
                 setCurrentUser(data)
             });
     }, [user.email])
-    console.log(currentUser);
 
     if (loader) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
@@ -30,7 +29,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-primary text-2xl font-semibold">
+                    <ul className="menu p-4 w-80 text-primary text-2xl font-semibold bg-white">
                         <li>
                             {
                                 currentUser?.type === "seller" &&

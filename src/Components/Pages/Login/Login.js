@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { signIn, loader } = useContext(AuthContext);
+    const location = useLocation();
     const navigateTo = useNavigate();
+    const from = location.state?.from?.pathname || "/"
 
     if (loader) {
-        return <div>Loading...</div>;
+        return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>;
     }
 
     const loginUser = data => {
@@ -19,7 +21,7 @@ const Login = () => {
                 const user = result.user;
                 if (user.uid) {
                     toast.success("Login successful")
-                    navigateTo('/');
+                    navigateTo(from, { replace: true });
                 }
             })
             .catch(errors => console.log(errors));

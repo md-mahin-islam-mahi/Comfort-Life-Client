@@ -12,6 +12,8 @@ import MyOrders from "../../Components/Dashboard/MyOrders/MyOrders";
 import PaymentPage from "../../Components/Dashboard/Payment/PaymentPage";
 import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
 import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
+import AdminRoute from "../../Components/Dashboard/Admin/AdminRoute";
+import PrivateRoute from "../Private/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: "/collections/:name",
                 element: <Collections></Collections>,
-                loader: ({params}) => fetch(`http://localhost:5000/item/${params.name}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/item/${params.name}`)
             },
             {
                 path: "/category",
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute>
+            <Dashboard></Dashboard>
+        </PrivateRoute>,
         children: [
             {
                 path: "/dashboard/add-item",
@@ -64,11 +68,16 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/admin/all-buyers",
-                element: <AllBuyers></AllBuyers>
+                element: <AllBuyers></AllBuyers>,
+                loader: () => fetch('http://localhost:5000/users')
             },
             {
                 path: "/dashboard/admin/all-seller",
                 element: <AllSeller></AllSeller>
+            },
+            {
+                path: "/dashboard/admin",
+                element: <AdminRoute></AdminRoute>
             }
         ],
     }
