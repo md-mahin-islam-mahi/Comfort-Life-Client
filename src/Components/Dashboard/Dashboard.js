@@ -15,6 +15,10 @@ const Dashboard = () => {
             });
     }, [user.email])
 
+    // useEffect( () => {
+    //     fetch('http://localhost:5000/users')
+    // }, [])
+
     if (loader) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
     }
@@ -34,7 +38,7 @@ const Dashboard = () => {
                             {
                                 currentUser?.type === "seller" &&
                                 <>
-                                    <Link to="/dashboard/add-item">Add a Product</Link>
+                                    <Link to="/dashboard/add-item/">Add a Product</Link>
                                     <Link to="/dashboard/my-products">My Products</Link>
                                     <Link>My Buyers</Link>
                                 </>

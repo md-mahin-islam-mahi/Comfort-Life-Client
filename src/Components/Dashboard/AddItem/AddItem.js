@@ -8,7 +8,7 @@ const AddItem = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const { user } = useContext(AuthContext);
-    const [itemType, setItemType] = useState('')
+    const [itemType, setItemType] = useState('Bed')
 
     const imageKey = process.env.REACT_APP_imgbb_key;
 
@@ -34,7 +34,8 @@ const AddItem = () => {
             .then(res => res.json())
             .catch(err => console.error(err));
         toast.success('Added items successfully')
-        navigate("/")
+        // navigate("/")
+        // console.log(itemType);
 
         // const image = data.image[0];
         // const formData = new FormData();

@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../Context/AuthProvider';
 
 const DetailModa = ({ furniture }) => {
-    const { productName, condition, image, price, salerName, email, phone, location, year } = furniture;
+    const { _id, productName, condition, image, price, salerName, email, phone, location, year } = furniture;
     const {user} = useContext(AuthContext);
 
     const addToWishlist = () => {
@@ -13,7 +13,8 @@ const DetailModa = ({ furniture }) => {
             sellerName: salerName,
             sellerEmail: email,
             buyerEmail: user.email,
-            price: price
+            price: price,
+            previousId: _id
         }
 
         fetch(`http://localhost:5000/orders`, {

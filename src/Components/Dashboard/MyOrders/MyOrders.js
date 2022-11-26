@@ -27,6 +27,7 @@ const MyOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
+                alert("Are you sure you want to delete?")
                 if (data.acknowledged === true) {
                     toast.success("Removed order from wishlist successfully");
                     refetch();
@@ -62,7 +63,7 @@ const MyOrders = () => {
 
                                 </td>
                                 <td>
-                                    <Link to="/dashboard/payment">
+                                    <Link to={`/dashboard/payment/${furniture.previousId}`}>
                                         <button className="btn-primary btn-sm rounded-lg text-white font-semibold">Purchase</button>
                                     </Link>
                                 </td>

@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Advertisement from '../Advertisement/Advertisement';
 
 const Home = () => {
+    const [allFurnitures, setAllFurnitures] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/furniture-available')
+            .then(res => res.json())
+            .then(data => setAllFurnitures(data))
+    }, [])
+
+
     return (
         <div>
             <div className='w-full'>
@@ -14,6 +24,19 @@ const Home = () => {
                             <p className="mb-5">This is a place where you can buy resaled furnitures like bes, sofa, table, chare, dressing tables, cupboard etc. We provide good quality products.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* advertisement section */}
+            <div className='mx-auto'>
+                <h4 className="text-4xl text-gray-500 font-semibold mb-10">Available Products</h4>
+                <div>
+                    {
+                        allFurnitures.map(furniture => <Advertisement
+                            key={furniture._id}
+                            furniture={furniture}
+                        ></Advertisement>)
+                    }
                 </div>
             </div>
 
