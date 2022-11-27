@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import login from '../../../image/image-01.png'
 
 const AddItem = () => {
     const { register, handleSubmit } = useForm();
@@ -126,7 +127,7 @@ const AddItem = () => {
                             </div>
                             <div className="form-control">
                                 <label htmlFor='image' className="label">
-                                    <span className="border rounded-md p-3 text-xl text-gray-600 cursor-pointer">Product Image (Click)</span>
+                                    <img className='w-full opacity-50 cursor-pointer' src={login} alt="" />
                                 </label>
                                 <input id='image' type="file" hidden placeholder="" className="input input-bordered text-black" {...register("image", { required: true })} />
                             </div>

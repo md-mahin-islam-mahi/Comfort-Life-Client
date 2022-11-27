@@ -17,9 +17,10 @@ const Signup = () => {
     const handleSignup = data => {
         const email = data.email;
         const password = data.password;
-        // const displayName = data.name;
-        // const type = userType;
 
+        const currentUser = {
+            email: email
+        }
         createUser(email, password)
         .then(result => {
             const userInfo = {
@@ -27,6 +28,20 @@ const Signup = () => {
             }
             updateUserProfile(userInfo)
             .then(() => {})
+
+            // json web token
+            fetch('http://localhost:5000/jwt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                localStorage.setItem("token", data.token);
+            })
             .catch(err => console.error(err));
             saveUser(data.name, data.email, userType)
             
@@ -48,14 +63,6 @@ const Signup = () => {
             .catch(err => console.error(err));
         }
 
-        // fetch('http://localhost:5000/users', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(user)
-
-        // })
     };
 
 
@@ -100,7 +107,7 @@ const Signup = () => {
                             <p className='text-gray-500'>Already have an account? Please <Link to="/login"><span className='text-primary font-semibold'>Login</span></Link></p>
                             <div className="divider">OR</div>
                             <div>
-                                <button className='btn btn-accent btn-outline w-full'>Signup with Google</button>
+                                <button className='btn btn-error btn-outline w-full'>Contineu with Google</button>
                             </div>
                         </div>
                     </form>

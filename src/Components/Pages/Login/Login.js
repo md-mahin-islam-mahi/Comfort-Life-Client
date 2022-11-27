@@ -20,11 +20,30 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                };
+
+                // json web token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("token", data.token);
+                    })
                 if (user.uid) {
-                    toast.success("Login successful")
                     navigateTo(from, { replace: true });
                 }
             })
+            .catch(err => console.error(err))
+            toast.success("Login successful")
+            
 
     }
 
@@ -54,7 +73,7 @@ const Login = () => {
                             <p className='text-gray-500'>Don't have an account? Please <Link to="/signup"><span className='text-primary font-semibold'>Sign Up</span></Link></p>
                             <div className="divider">OR</div>
                             <div>
-                                <button className='btn btn-accent btn-outline w-full'>Contineu with Google</button>
+                                <button className='btn btn-error btn-outline w-full'>Contineu with Google</button>
                             </div>
                         </div>
                     </form>
