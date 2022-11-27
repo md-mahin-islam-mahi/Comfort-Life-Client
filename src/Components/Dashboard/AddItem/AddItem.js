@@ -27,15 +27,17 @@ const AddItem = () => {
                 if (imgData.success === true) {
                     console.log(imgData.data.url);
                     const product = {
-                        salerName: data.salerName,
+                        sellerName: data.salerName,
                         location: data.location,
                         phone: data.phone,
-                        email: data.email,
+                        sellerEmail: data.email,
                         productName: itemType,
                         price: data.price,
                         condition: data.condition,
                         description: data.description,
-                        image: imgData.data.url
+                        image: imgData.data.url,
+                        year: data.year,
+                        isAvailable: 'true'
                     }
 
                     fetch('http://localhost:5000/furniture', {

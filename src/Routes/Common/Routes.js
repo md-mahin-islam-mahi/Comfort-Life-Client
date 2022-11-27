@@ -35,7 +35,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "/collections/:name",
-                element: <Collections></Collections>,
+                element: <PrivateRoute>
+                    <Collections></Collections>
+                </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/item/${params.name}`)
             },
             {
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/:id",
                 element: <PaymentPage></PaymentPage>,
-                loader: ({params}) => fetch(`http://localhost:5000/get-furniture/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/get-furniture/${params.id}`)
             },
             {
                 path: "/dashboard/admin/all-buyers/:type",

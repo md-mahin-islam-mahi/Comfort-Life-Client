@@ -1,6 +1,7 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
+import { FaCheckCircle } from 'react-icons/fa'
 
 const AllSeller = () => {
     const sellers = useLoaderData();
@@ -56,11 +57,17 @@ const AllSeller = () => {
                             sellers.map((seller, i) =>
                                 <tr key={seller._id}>
                                     <th className='text-xl text-gray-500 text-semibold'>{i + 1}</th>
-                                    <td className='text-xl text-gray-500 text-semibold'>{seller.displayName}</td>
+                                    <td className='text-xl text-gray-500 text-semibold flex items-center'><p>{seller.displayName}</p>
+                                    {
+                                        seller.isVarified === true && <FaCheckCircle className='ml-3 text-primary' />
+                                    }
+                                    </td>
                                     <td className='text-xl text-gray-500 text-semibold'>${seller.email}</td>
                                     <td>
                                         {
-                                            seller.identity !== 'varified' ? <p onClick={() => verifySeller(seller._id)} className='btn btn-xs btn-outline btn-primary'>Varify</p> : <p>Seller is varified</p>
+                                            seller.isVarified!== true ? <p onClick={() => verifySeller(seller._id)} className='btn btn-xs btn-outline btn-primary'>Varify</p> 
+                                            : 
+                                            <p>Seller is varified</p>
                                         }
                                     </td>
                                     <td>
