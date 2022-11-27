@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
@@ -6,8 +6,9 @@ import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, loader, googleSignup } = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const { register, handleSubmit } = useForm();
+    const { signIn, loader, setLoader, googleSignup } = useContext(AuthContext);
     const location = useLocation();
     const navigateTo = useNavigate();
     const from = location.state?.from?.pathname || "/"
@@ -38,12 +39,15 @@ const Login = () => {
                         console.log(data);
                         localStorage.setItem("token", data.token);
                     })
-                if (user.uid) {
+
+                if (user.email) {
                     navigateTo(from, { replace: true });
+                    toast.success("Login successful")
+                    setLoader(false)
                 }
             })
-            .catch(err => console.error(err))
-        toast.success("Login successful")
+            .catch(err => setError(err.message))
+        
     }
 
     const provider = new GoogleAuthProvider();
@@ -65,14 +69,14 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         localStorage.setItem("token", data.token);
                     })
                 if (user.uid) {
                     navigateTo(from, { replace: true });
+                    setLoader(false)
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => setError(err.message));
     }
 
 
@@ -87,18 +91,19 @@ const Login = () => {
                                     <span className="label-text text-gray-500">Email</span>
                                 </label>
                                 <input type="text" placeholder="email" className="input input-bordered text-black" {...register("email", { required: true })} />
-                                {errors.email && <div className="error text-red-600">{errors.email.message}</div>}
+                                
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text text-gray-500">Password</span>
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password", { required: true })} />
-
+                                
                             </div>
                             <div className="form-control mt-6">
                                 <input className='btn btn-primary text-white text-xl' type="submit" value="Login" />
                             </div>
+                            <p className="text-xl text-red-500">{error}</p>
                             <p className='text-gray-500'>Don't have an account? Please <Link to="/signup"><span className='text-primary font-semibold'>Sign Up</span></Link></p>
                             <div className="divider">OR</div>
                             <div>

@@ -17,10 +17,27 @@ const AllSeller = () => {
             .then(data => {
                 alert("Are you sure you want to delete?")
                 if (data.acknowledged === true) {
-                    toast.success("Removed buyer successfully");
+                    toast.success("Removed seller successfully");
                 }
             })
     }
+
+    const verifySeller = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert("Are you sure this seller is varified?")
+                if (data.acknowledged === true) {
+                    toast.success("Varified seller successfully");
+                }
+            })
+    }
+
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -36,26 +53,20 @@ const AllSeller = () => {
 
                     <tbody>
                         {
-                            sellers.map((seller, i) => <tr key={seller._id}>
-                                <th className='text-xl text-gray-500 text-semibold'>{i + 1}</th>
-                                <td className='text-xl text-gray-500 text-semibold'>{seller.displayName}</td>
-                                <td className='text-xl text-gray-500 text-semibold'>${seller.email}</td>
-                                <td className='text-center'>
-
-                                </td>
-                                {/* <td>
-                                    {
-                                        furniture.payment === "true" ? <p>Paid</p> : <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
-                                        <Link to={`/dashboard/payment/${furniture.previousId}`}>
-                                            Purchase
-                                        </Link>
-                                    </button>
-                                    }
-                                    
-                                </td> */}
-                                <td><p onClick={() => deleteOrder(seller._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
-                                </td>
-                            </tr>)
+                            sellers.map((seller, i) =>
+                                <tr key={seller._id}>
+                                    <th className='text-xl text-gray-500 text-semibold'>{i + 1}</th>
+                                    <td className='text-xl text-gray-500 text-semibold'>{seller.displayName}</td>
+                                    <td className='text-xl text-gray-500 text-semibold'>${seller.email}</td>
+                                    <td>
+                                        {
+                                            seller.identity !== 'varified' ? <p onClick={() => verifySeller(seller._id)} className='btn btn-xs btn-outline btn-primary'>Varify</p> : <p>Seller is varified</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        <p onClick={() => deleteOrder(seller._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
+                                    </td>
+                                </tr>)
                         }
                     </tbody>
 
