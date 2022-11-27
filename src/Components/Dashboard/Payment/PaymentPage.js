@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const PaymentPage = () => {
     const furniture = useLoaderData();
-    const {productName} = furniture;
+    const { productName } = furniture;
 
     console.log(furniture);
 
@@ -13,12 +13,36 @@ const PaymentPage = () => {
             method: 'PUT',
             headers: {},
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged === true) {
-                toast.success('Payment Successful')
-            }
-        });
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    toast.success('Payment Successful')
+                    fetch('http://localhost:5000/paid', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(furniture),
+                    })
+                        .then(res => res.json())
+                        .catch(err => console.error(err))
+
+                    fetch(`http://localhost:5000/furniture/${id}`, {
+                        method: 'DELETE',
+                        headers: {},
+                    })
+                        .then(res => res.json())
+                        .catch(err => console.error(err))
+
+
+                    fetch(`http://localhost:5000/furniture-delete/${id}`, {
+                        method: 'DELETE',
+                        headers: {},
+                    })
+                        .then(res => res.json())
+                        .catch(err => console.error(err))
+                }
+            });
     }
 
     return (

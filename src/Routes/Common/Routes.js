@@ -14,6 +14,7 @@ import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
 import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
 import PrivateRoute from "../Private/PrivateRoute";
 import Blog from "../../Components/Blog/Blog";
+import MyPaid from "../../Components/Dashboard/MyPaid/MyPaid";
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/my-orders",
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: "/dashboard/payment-history",
+                element: <MyPaid></MyPaid>
             },
             {
                 path: "/dashboard/payment/:id",

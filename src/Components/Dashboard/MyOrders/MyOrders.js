@@ -12,7 +12,11 @@ const MyOrders = () => {
         queryKey: 'myOrders',
         queryFn: async () => {
             const url = `http://localhost:5000/orders?email=${user.email}`
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -41,14 +45,15 @@ const MyOrders = () => {
 
     return (
         <div>
+            <h3 className="text-4xl text-primary font-semibold my-20">Items you want to buy</h3>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th className='bg-white text-gray-400 text-start text-sm'></th>
+                            <th className='bg-white text-gray-400 text-start text-sm'></th>
                             <th className='bg-white text-gray-400 text-start text-sm'>Name</th>
                             <th className='bg-white text-gray-400 text-start text-sm'>Price</th>
-                            <th className='bg-white text-gray-400 text-start text-sm'></th>
                         </tr>
                     </thead>
 
@@ -56,20 +61,24 @@ const MyOrders = () => {
                         {
                             furnitures.map((furniture, i) => <tr key={furniture._id}>
                                 <th className='text-xl text-gray-500 text-semibold'>{i + 1}</th>
+                                <th className='text-xl text-gray-500 text-semibold'>
+                                    <div className="avatar">
+                                        <div className="w-16 rounded">
+                                            <img src={furniture.image} alt="Tailwind-CSS-Avatar-component" />
+                                        </div>
+                                    </div>
+                                </th>
                                 <td className='text-xl text-gray-500 text-semibold'>{furniture.productName}</td>
                                 <td className='text-xl text-gray-500 text-semibold'>${furniture.price}</td>
                                 <td className='text-center'>
 
                                 </td>
                                 <td>
-                                    {
-                                        furniture.payment === "true" ? <p>Paid</p> : <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
+                                    <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
                                         <Link to={`/dashboard/payment/${furniture.previousId}`}>
                                             Purchase
                                         </Link>
-                                    </button>
-                                    }
-                                    
+                                    </button> 
                                 </td>
                                 <td><p onClick={() => deleteOrder(furniture._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
                                 </td>

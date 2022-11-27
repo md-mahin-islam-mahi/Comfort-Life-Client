@@ -14,6 +14,7 @@ const DetailModa = ({ furniture }) => {
             sellerEmail: email,
             buyerEmail: user.email,
             price: price,
+            image: image,
             previousId: _id
         }
 

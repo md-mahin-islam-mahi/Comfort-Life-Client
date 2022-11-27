@@ -1,19 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Signup = () => {
     const [userType, setUserType] = useState('buyer');
     const { register, handleSubmit } = useForm();
-    const {createUser, loader, updateUserProfile} = useContext(AuthContext);
+    const { createUser, loader, updateUserProfile, googleSignup } = useContext(AuthContext);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
     const navigate = useNavigate();
 
-    if(loader) {
+    if (loader) {
         return <div className='min-h-screen'><h3 className='text-3xl text-primary mt-80'>Loading...</h3></div>
     }
-    
+
     const handleSignup = data => {
         const email = data.email;
         const password = data.password;
@@ -22,36 +25,36 @@ const Signup = () => {
             email: email
         }
         createUser(email, password)
-        .then(result => {
-            const userInfo = {
-                displayName: data.name,
-            }
-            updateUserProfile(userInfo)
-            .then(() => {})
+            .then(result => {
+                const userInfo = {
+                    displayName: data.name,
+                }
+                updateUserProfile(userInfo)
+                    .then(() => { })
 
-            // json web token
-            fetch('http://localhost:5000/jwt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(currentUser)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                localStorage.setItem("token", data.token);
+                // json web token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("token", data.token);
+                    })
+                    .catch(err => console.error(err));
+                saveUser(data.name, data.email, userType)
+
             })
             .catch(err => console.error(err));
-            saveUser(data.name, data.email, userType)
-            
-        })
-        .catch(err => console.error(err));
         toast.success("User created successfully");
         navigate("/");
 
         const saveUser = (displayName, email, type) => {
-            const user = {displayName, email, type};
+            const user = { displayName, email, type };
             fetch('http://localhost:5000/users', {
                 method: 'POST',
                 headers: {
@@ -59,18 +62,61 @@ const Signup = () => {
                 },
                 body: JSON.stringify(user)
             })
-            .then(res => res.json())
-            .catch(err => console.error(err));
+                .then(res => res.json())
+                .catch(err => console.error(err));
         }
 
     };
 
+    const provider = new GoogleAuthProvider();
+    const signInGoogle = () => {
+        googleSignup(provider)
+            .then(result => {
+                const user = result.user;
+                const savedUser = {
+                    displayName: user.displayName,
+                    email: user.email,
+                    type: userType
+                }
+                fetch('http://localhost:5000/users', { // user save to database
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .catch(err => console.error(err));
+
+                // json werb token
+                const currentUser = {
+                    email: user.email
+                };
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("token", data.token);
+                    })
+                if (user.uid) {
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
 
     return (
-        
-            <div className="hero min-h-screen">
-                <div className="hero-content flex-col">
-                    <div className="card flex-shrink-0 w-full min-h-96 max-w-sm shadow-2xl">
+
+        <div className="hero min-h-screen">
+            <div className="hero-content flex-col">
+                <div className="card flex-shrink-0 w-full min-h-96 max-w-sm shadow-2xl">
                     <form onSubmit={handleSubmit(handleSignup)}>
                         <div className="card-body">
                             <div className="form-control">
@@ -107,13 +153,13 @@ const Signup = () => {
                             <p className='text-gray-500'>Already have an account? Please <Link to="/login"><span className='text-primary font-semibold'>Login</span></Link></p>
                             <div className="divider">OR</div>
                             <div>
-                                <button className='btn btn-error btn-outline w-full'>Contineu with Google</button>
+                                <button onClick={signInGoogle} className='btn btn-error btn-outline w-full'>Contineu with Google</button>
                             </div>
                         </div>
                     </form>
-                    </div>
                 </div>
             </div>
+        </div>
     );
 };
 

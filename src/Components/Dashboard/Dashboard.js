@@ -50,6 +50,7 @@ const Dashboard = () => {
                                 currentUser?.type === "buyer" &&
                                 <>
                                     <Link to="/dashboard/my-orders">My Orders</Link>
+                                    <Link to="/dashboard/payment-history">Payment History</Link>
                                 </>
                             }
                         </li>

@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, loader } = useContext(AuthContext);
+    const { signIn, loader, googleSignup } = useContext(AuthContext);
     const location = useLocation();
     const navigateTo = useNavigate();
     const from = location.state?.from?.pathname || "/"
@@ -42,10 +43,38 @@ const Login = () => {
                 }
             })
             .catch(err => console.error(err))
-            toast.success("Login successful")
-            
-
+        toast.success("Login successful")
     }
+
+    const provider = new GoogleAuthProvider();
+    const signInGoogle = () => {
+        googleSignup(provider)
+            .then(result => {
+                const user = result.user;
+                const currentUser = {
+                    email: user.email
+                };
+
+                // json web token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("token", data.token);
+                    })
+                if (user.uid) {
+                    navigateTo(from, { replace: true });
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
 
     return (
         <div className="hero min-h-screen">
@@ -73,7 +102,7 @@ const Login = () => {
                             <p className='text-gray-500'>Don't have an account? Please <Link to="/signup"><span className='text-primary font-semibold'>Sign Up</span></Link></p>
                             <div className="divider">OR</div>
                             <div>
-                                <button className='btn btn-error btn-outline w-full'>Contineu with Google</button>
+                                <button onClick={signInGoogle} className='btn btn-error btn-outline w-full'>Contineu with Google</button>
                             </div>
                         </div>
                     </form>
