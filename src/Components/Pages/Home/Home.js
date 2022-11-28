@@ -21,7 +21,7 @@ const Home = () => {
                     <div className="hero-content text-center text-neutral-content">
                         <div className="max-w-md">
                             <h2 className="mb-5 text-4xl font-bold">Welcome to</h2>
-                            <h1 className="mb-5 text-7xl font-bold">Comfort Life</h1>
+                            <h1 className="mb-5 text-7xl font-bold hover:text-primary transition duration-300 ease-in-out">Comfort Life</h1>
                             <p className="mb-5">This is a place where you can buy resaled furnitures like bes, sofa, table, chare, dressing tables, cupboard etc. We provide good quality products.</p>
                         </div>
                     </div>
@@ -49,9 +49,9 @@ const Home = () => {
             <div>
                 <div className="hero my-20 mx-auto">
                     <div className="hero-content flex-col justify-between lg:flex-row-reverse">
-                        <img src="https://i.ibb.co/5kHbr1w/sofa.jpg" alt='sofa' className="max-w-xm rounded-lg shadow-2xl lg:ml-40" />
+                        <img src="https://i.ibb.co/5kHbr1w/sofa.jpg" alt='sofa' className="max-w-xm rounded-lg shadow-2xl lg:ml-40 hover:translate-y-5 transition duration-300 ease-in-out" />
                         <div className='lg:text-start lg:w-1/2 '>
-                            <h1 className="text-5xl font-bold text-gray-500">Best Sofa Set!</h1>
+                            <h1 className="hover:text-primary transition duration-300 ease-in-out text-5xl font-bold text-gray-500">Best Sofa Set!</h1>
                             <p className="py-6 w-96 text-gray-400">We have the best resalable sofa sets in our collection. We collect the best quality products and sel to you.</p>
                         </div>
                     </div>
@@ -60,9 +60,9 @@ const Home = () => {
 
             <div className="hero my-20 mx-auto">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img src="https://i.ibb.co/bQx7kLm/bed.jpg" alt='bed' className="max-w-xm rounded-lg shadow-2xl lg:mr-40" />
+                    <img src="https://i.ibb.co/bQx7kLm/bed.jpg" alt='bed' className="max-w-xm rounded-lg shadow-2xl lg:mr-40 hover:translate-y-5 transition duration-300 ease-in-out" />
                     <div className='lg:text-start lg:w-1/2 '>
-                        <h1 className="text-5xl font-bold text-gray-500">Attractice Bed Set!</h1>
+                        <h1 className="hover:text-primary transition duration-300 ease-in-out text-5xl font-bold text-gray-500">Attractice Bed Set!</h1>
                         <p className="py-6 w-96 text-gray-400">We provide the best resalable bed sets in our collection. We collect the best quality products and sel to you.</p>
                     </div>
                 </div>
@@ -71,9 +71,9 @@ const Home = () => {
             <div>
                 <div className="hero my-20 mx-auto">
                     <div className="hero-content flex-col justify-between lg:flex-row-reverse">
-                        <img src="https://i.ibb.co/Mh50WFc/dressing-table.jpg" alt='dressing table' className="max-w-xm rounded-lg shadow-2xl lg:ml-40" />
+                        <img src="https://i.ibb.co/Mh50WFc/dressing-table.jpg" alt='dressing table' className="max-w-xm rounded-lg shadow-2xl lg:ml-40 hover:translate-y-5 transition duration-300 ease-in-out" />
                         <div className='lg:text-start lg:w-1/2 '>
-                            <h1 className="text-5xl font-bold text-gray-500">Best Dressing Table Set!</h1>
+                            <h1 className="hover:text-primary transition duration-300 ease-in-out text-5xl font-bold text-gray-500">Best Dressing Table Set!</h1>
                             <p className="py-6 w-96 text-gray-400">We have the best resalable dressing table sets in our collection. We collect the best quality products and sel to you.</p>
                         </div>
                     </div>

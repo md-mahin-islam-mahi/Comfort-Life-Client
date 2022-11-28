@@ -19,10 +19,10 @@ const Advertisement = ({ furniture }) => {
         <>
             {
                 furniture.isAvailable === "true" &&
-                <div className="card w-96 bg-base-100 shadow-xl image-full">
+                <div className="card w-80 hover:translate-x-2 hover:shadow-2xl bg-base-100 shadow-sm image-full transition hover:translate-y-5 duration-400 ease-in-out">
                     <figure><img src={image} alt={productName} /></figure>
                     <div className="card-body text-start">
-                        <h2 className="text-4xl font-semibold text-primary">{productName}</h2>
+                        <h2 className="text-4xl transition duration-500 ease-in font-semibold text-primary">{productName}</h2>
                         <div className='mt-5'>
                             <p className='text-2xl text-gray-300 flex items-center'>
                                 <span className='font-bold'>Seller</span>:
