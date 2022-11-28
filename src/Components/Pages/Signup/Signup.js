@@ -33,7 +33,7 @@ const Signup = () => {
                     .then(() => { })
 
                 // json web token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://comfort-life-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const Signup = () => {
 
         const saveUser = (displayName, email, type) => {
             const user = { displayName, email, type };
-            fetch('http://localhost:5000/users', {
+            fetch('https://comfort-life-server.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const Signup = () => {
                     email: user.email,
                     type: userType
                 }
-                fetch('http://localhost:5000/users', { // user save to database
+                fetch('https://comfort-life-server.vercel.app/users', { // user save to database
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ const Signup = () => {
                 const currentUser = {
                     email: user.email
                 };
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://comfort-life-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

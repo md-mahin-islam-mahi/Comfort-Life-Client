@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: () =>
-            fetch(`http://localhost:5000/furniture/${user.email}`)
+            fetch(`https://comfort-life-server.vercel.app/furniture/${user.email}`)
                 .then(response => response.json())
     });
 
@@ -19,7 +19,7 @@ const MyProducts = () => {
     }
 
     const addvertisement = id => {
-        fetch(`http://localhost:5000/furniture/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/furniture/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -65,7 +65,7 @@ const MyProducts = () => {
                                     {
                                         products.isAvailable === 'true' ?
                                             <p className='text-primary font-semibold'>Product is available</p>
-                                            : <p className='text-red-500 font-semibold'>Product is not available</p>
+                                            : <p className='text-red-500 font-semibold'>Product Already Sold</p>
                                     }
 
                                 </td>

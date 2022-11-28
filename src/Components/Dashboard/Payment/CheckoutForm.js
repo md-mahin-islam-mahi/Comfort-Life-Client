@@ -8,7 +8,7 @@ const CheckoutForm = ({ furniture }) => {
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
-        fetch('http://localhost:5000/payment-intent', {
+        fetch('https://comfort-life-server.vercel.app/payment-intent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const CheckoutForm = ({ furniture }) => {
             toast.success("Payment success")
         }
 
-        fetch(`http://localhost:5000/payment/${previousId}`, {
+        fetch(`https://comfort-life-server.vercel.app/payment/${previousId}`, {
             method: 'PUT',
             headers: {},
         })
@@ -76,7 +76,7 @@ const CheckoutForm = ({ furniture }) => {
             .then(data => {
                 if (data.acknowledged === true) {
                     toast.success('Payment Successful')
-                    fetch('http://localhost:5000/paid', {
+                    fetch('https://comfort-life-server.vercel.app/paid', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const CheckoutForm = ({ furniture }) => {
                         .then(res => res.json())
                         .catch(err => console.error(err))
 
-                    fetch(`http://localhost:5000/order/${previousId}`, {
+                    fetch(`https://comfort-life-server.vercel.app/order/${previousId}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const CheckoutForm = ({ furniture }) => {
                         .catch(err => console.error(err))
 
 
-                    fetch(`http://localhost:5000/paid/${_id}`, {
+                    fetch(`https://comfort-life-server.vercel.app/paid/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',

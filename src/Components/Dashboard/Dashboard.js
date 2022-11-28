@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { loader, user } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://comfort-life-server.vercel.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentUser(data)
@@ -16,7 +16,7 @@ const Dashboard = () => {
     }, [user.email])
 
     // useEffect( () => {
-    //     fetch('http://localhost:5000/users')
+    //     fetch('https://comfort-life-server.vercel.app/users')
     // }, [])
 
     if (loader) {

@@ -12,7 +12,7 @@ const PaymentPage = () => {
     const stripePromise = loadStripe(process.env.REACT_APP_PK);
 
     const payBill = id => {
-        fetch(`http://localhost:5000/payment/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/payment/${id}`, {
             method: 'PUT',
             headers: {},
         })
@@ -20,7 +20,7 @@ const PaymentPage = () => {
             .then(data => {
                 if (data.acknowledged === true) {
                     toast.success('Payment Successful')
-                    fetch('http://localhost:5000/paid', {
+                    fetch('https://comfort-life-server.vercel.app/paid', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const PaymentPage = () => {
                         .then(res => res.json())
                         .catch(err => console.error(err))
 
-                    fetch(`http://localhost:5000/furniture/${id}`, {
+                    fetch(`https://comfort-life-server.vercel.app/furniture/${id}`, {
                         method: 'DELETE',
                         headers: {},
                     })
@@ -38,7 +38,7 @@ const PaymentPage = () => {
                         .catch(err => console.error(err))
 
 
-                    fetch(`http://localhost:5000/furniture-delete/${id}`, {
+                    fetch(`https://comfort-life-server.vercel.app/furniture-delete/${id}`, {
                         method: 'DELETE',
                         headers: {},
                     })

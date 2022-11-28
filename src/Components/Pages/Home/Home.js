@@ -7,7 +7,7 @@ const Home = () => {
     const [allFurnitures, setAllFurnitures] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/furniture-available')
+        fetch('https://comfort-life-server.vercel.app/furniture-available')
             .then(res => res.json())
             .then(data => setAllFurnitures(data))
     }, [])

@@ -39,12 +39,12 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Collections></Collections>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/item/${params.name}`)
+                loader: ({ params }) => fetch(`https://comfort-life-server.vercel.app/item/${params.name}`)
             },
             {
                 path: "/category",
                 element: <SeeCategory></SeeCategory>,
-                loader: () => fetch('http://localhost:5000/categories')
+                loader: () => fetch('https://comfort-life-server.vercel.app/categories')
             },
             {
                 path: "/blog",
@@ -81,17 +81,17 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/payment/:id",
                 element: <PaymentPage></PaymentPage>,
-                loader: ({ params }) => fetch(`http://localhost:5000/get-furniture/${params.id}`)
+                loader: ({ params }) => fetch(`https://comfort-life-server.vercel.app/get-furniture/${params.id}`)
             },
             {
                 path: "/dashboard/admin/all-buyers/:type",
                 element: <AllBuyers></AllBuyers>,
-                loader: () => fetch('http://localhost:5000/users-type/buyer')
+                loader: () => fetch('https://comfort-life-server.vercel.app/users-type/buyer')
             },
             {
                 path: "/dashboard/admin/all-seller/:type",
                 element: <AllSeller></AllSeller>,
-                loader: () => fetch('http://localhost:5000/users-type/seller')
+                loader: () => fetch('https://comfort-life-server.vercel.app/users-type/seller')
             }
         ],
     }

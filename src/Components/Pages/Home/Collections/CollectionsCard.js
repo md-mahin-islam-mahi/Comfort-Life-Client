@@ -9,7 +9,7 @@ const CollectionsCard = ({ option, setFruniture }) => {
     const { data: seller = [] } = useQuery({
         queryKey: 'user',
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/${sellerEmail}`);
+            const res = await fetch(`https://comfort-life-server.vercel.app/users/${sellerEmail}`);
             const data = await res.json();
             return data;
         }

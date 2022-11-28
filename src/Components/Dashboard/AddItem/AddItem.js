@@ -39,7 +39,7 @@ const AddItem = () => {
                         isAvailable: 'true'
                     }
 
-                    fetch('http://localhost:5000/furniture', {
+                    fetch('https://comfort-life-server.vercel.app/furniture', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

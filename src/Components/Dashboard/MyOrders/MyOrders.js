@@ -11,7 +11,7 @@ const MyOrders = () => {
     const { data: furnitures = [], refetch } = useQuery({
         queryKey: 'myOrders',
         queryFn: async () => {
-            const url = `http://localhost:5000/orders?email=${user.email}`
+            const url = `https://comfort-life-server.vercel.app/orders?email=${user.email}`
             const res = await fetch(url, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("token")}`
@@ -23,7 +23,7 @@ const MyOrders = () => {
     })
 
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/orders/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ const MyOrders = () => {
                 }
             })
 
-            fetch(`http://localhost:5000/furniture-update/${id}`, {
+            fetch(`https://comfort-life-server.vercel.app/furniture-update/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

@@ -10,14 +10,14 @@ const MyPaid = () => {
     const { data: paidItems = [], isLoading, refetch } = useQuery({
         queryKey: 'paid',
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/paid/${user?.email}`);
+            const res = await fetch(`https://comfort-life-server.vercel.app/paid/${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
 
     const deleteItem = id => {
-        fetch(`http://localhost:5000/paid/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/paid/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

@@ -8,7 +8,7 @@ const AllSeller = () => {
 
     // admin removing seller
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/users/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ const AllSeller = () => {
     }
 
     const verifySeller = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://comfort-life-server.vercel.app/users/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

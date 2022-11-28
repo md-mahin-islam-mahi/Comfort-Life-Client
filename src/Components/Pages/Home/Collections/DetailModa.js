@@ -18,7 +18,7 @@ const DetailModa = ({ furniture }) => {
             previousId: _id
         }
 
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://comfort-life-server.vercel.app/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
