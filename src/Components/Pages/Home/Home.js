@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Advertisement from '../Advertisement/Advertisement';
+import ExtraSection from './Extra/ExtraSection';
 
 const Home = () => {
     const [allFurnitures, setAllFurnitures] = useState([]);
@@ -30,7 +31,7 @@ const Home = () => {
             {/* advertisement section */}
             <div>
                 <h4 className="text-4xl text-gray-500 font-semibold mb-10">Available Products</h4>
-                <div className='w-full'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20 lg:gap-40 mx-auto p-5'>
                     {
                         allFurnitures.map(furniture => <Advertisement
                             key={furniture._id}
@@ -81,6 +82,7 @@ const Home = () => {
             <Link to="/category">
                 <button className='btn btn-outline btn-primary mb-20'>See More</button>
             </Link>
+            <ExtraSection></ExtraSection>
         </div>
     );
 };

@@ -74,13 +74,21 @@ const MyOrders = () => {
 
                                 </td>
                                 <td>
-                                    <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
-                                        <Link to={`/dashboard/payment/${furniture.previousId}`}>
-                                            Purchase
-                                        </Link>
-                                    </button> 
+                                    {
+                                        furniture.payment !== 'true' ? <button className="btn-primary btn-sm rounded-lg text-white font-semibold">
+                                            <Link to={`/dashboard/payment/${furniture.previousId}`}>
+                                                Purchase
+                                            </Link>
+                                        </button>
+                                            : <p className='text-xl text-primary'>Paid</p>
+                                    }
                                 </td>
-                                <td><p onClick={() => deleteOrder(furniture._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
+                                <td>
+                                    {
+                                        furniture.payment !== 'true' ? <p onClick={() => deleteOrder(furniture._id)} className='btn btn-xs btn-outline btn-error'>Delete</p>
+                                            : <p onClick={() => deleteOrder(furniture._id)} className='btn btn-xs btn-outline btn-error'>Remove</p>
+                                    }
+
                                 </td>
                             </tr>)
                         }

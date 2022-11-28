@@ -71,13 +71,15 @@ const MyProducts = () => {
                                 </td>
                                 <td>
                                     {
-                                        products.advertise !== 'true' ?
+                                        products.advertise !== 'true' && products.isAvailable === 'true' ?
                                             <button
                                                 onClick={() => addvertisement(products._id)}
                                                 className="btn-primary btn-sm rounded-lg text-white font-semibold">
                                                 Advertisement
                                             </button>
-                                            : <p className='text-gray-500 font-semibold'>Advertisement added</p>
+                                            :
+                                            products.addvertisement === 'true' &&
+                                            null
                                     }
 
                                 </td>

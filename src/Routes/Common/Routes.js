@@ -15,6 +15,7 @@ import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
 import PrivateRoute from "../Private/PrivateRoute";
 import Blog from "../../Components/Blog/Blog";
 import MyPaid from "../../Components/Dashboard/MyPaid/MyPaid";
+import Error from "../../Components/Pages/Error/Error";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "/blog",
                 element: <Blog></Blog>
+            },
+            {
+                path: "*",
+                element: <Error></Error>
             }
         ]
     },
