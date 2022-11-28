@@ -82,7 +82,11 @@ const Home = () => {
             <Link to="/category">
                 <button className='btn btn-outline btn-primary mb-20'>See More</button>
             </Link>
-            <ExtraSection></ExtraSection>
+
+            <div>
+                <h2 className="text-5xl text-primary font-semibold">Out Services</h2>
+                <ExtraSection></ExtraSection>
+            </div>
         </div>
     );
 };
