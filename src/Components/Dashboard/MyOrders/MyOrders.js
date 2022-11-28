@@ -37,6 +37,21 @@ const MyOrders = () => {
                     refetch();
                 }
             })
+
+            fetch(`http://localhost:5000/furniture-update/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(res => res.json(furnitures))
+            .then(data => {
+                alert("Are you sure you want to delete?")
+                if (data.acknowledged === true) {
+                    toast.success("Removed order from wishlist successfully");
+                    refetch();
+                }
+            })
     }
 
     if (loader) {

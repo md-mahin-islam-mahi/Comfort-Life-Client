@@ -84,7 +84,7 @@ const Home = () => {
             </Link>
 
             <div>
-                <h2 className="text-5xl text-primary font-semibold">Out Services</h2>
+                <h2 className="text-5xl text-primary font-semibold">About Us</h2>
                 <ExtraSection></ExtraSection>
             </div>
         </div>

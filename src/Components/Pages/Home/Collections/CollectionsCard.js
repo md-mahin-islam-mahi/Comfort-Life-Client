@@ -5,7 +5,7 @@ import { FaCheckCircle } from 'react-icons/fa'
 const CollectionsCard = ({ option, setFruniture }) => {
     const { productName, condition, image, description, sellerName, sellerEmail, price } = option;
 
-    console.log(option);
+    
     const { data: seller = [] } = useQuery({
         queryKey: 'user',
         queryFn: async () => {
@@ -28,7 +28,7 @@ const CollectionsCard = ({ option, setFruniture }) => {
                         Seller:
                         <span className='font-semibold ml-3'> {sellerName}</span>
                         {
-                            seller.isVarified && <FaCheckCircle className='ml-3 text-blue-500' />
+                            seller.isVarified === true && <FaCheckCircle className='ml-3 text-blue-500' />
                         }
                     </p>
                     <p className='text-gray-400'>Condition: {condition}</p>

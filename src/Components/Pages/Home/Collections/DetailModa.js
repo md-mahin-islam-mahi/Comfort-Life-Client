@@ -8,8 +8,6 @@ const DetailModa = ({ furniture }) => {
 
     const addToWishlist = () => {
 
-        console.log({ phone, location });
-
         const product = {
             productName,
             sellerName: sellerName,

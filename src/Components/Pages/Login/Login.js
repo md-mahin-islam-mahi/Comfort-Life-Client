@@ -36,7 +36,6 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         localStorage.setItem("token", data.token);
                     })
 
@@ -105,10 +104,7 @@ const Login = () => {
                             </div>
                             <p className="text-xl text-red-500">{error}</p>
                             <p className='text-gray-500'>Don't have an account? Please <Link to="/signup"><span className='text-primary font-semibold'>Sign Up</span></Link></p>
-                            <div className="divider">OR</div>
-                            <div>
-                                <button onClick={signInGoogle} className='btn btn-error btn-outline w-full'>Contineu with Google</button>
-                            </div>
+                            
                         </div>
                     </form>
                 </div>

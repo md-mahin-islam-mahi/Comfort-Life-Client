@@ -25,7 +25,6 @@ const AddItem = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success === true) {
-                    console.log(imgData.data.url);
                     const product = {
                         sellerName: data.salerName,
                         location: data.location,
@@ -49,7 +48,6 @@ const AddItem = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
                             if(data.acknowledged === true) {
                                 toast.success('Added items successfully');
                                 navigate("/");

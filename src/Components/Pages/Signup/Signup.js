@@ -42,7 +42,6 @@ const Signup = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         localStorage.setItem("token", data.token);
                     })
                     .catch(err => console.error(err));
@@ -101,7 +100,6 @@ const Signup = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         localStorage.setItem("token", data.token);
                     })
                 if (user.uid) {

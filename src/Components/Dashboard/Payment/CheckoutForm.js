@@ -64,7 +64,6 @@ const CheckoutForm = ({ furniture }) => {
             setCardError(confirmationError.message);
             return;
         }
-        console.log(paymentIntent);
         if (paymentIntent.status === "succeeded") {
             toast.success("Payment success")
         }

@@ -4,7 +4,6 @@ import { FaCheckCircle } from 'react-icons/fa'
 
 const Advertisement = ({ furniture }) => {
     const { productName, sellerEmail, sellerName, condition, price, image } = furniture;
-    console.log(furniture);
 
     const { data: seller = [] } = useQuery({
         queryKey: 'seller',
