@@ -12,7 +12,6 @@ import MyOrders from "../../Components/Dashboard/MyOrders/MyOrders";
 import PaymentPage from "../../Components/Dashboard/Payment/PaymentPage";
 import AllBuyers from "../../Components/Dashboard/Admin/All Buyers/AllBuyers"
 import AllSeller from "../../Components/Dashboard/Admin/All seller/AllSeller"
-import PrivateRoute from "../Private/PrivateRoute";
 import Blog from "../../Components/Blog/Blog";
 import MyPaid from "../../Components/Dashboard/MyPaid/MyPaid";
 import Error from "../../Components/Pages/Error/Error";
@@ -36,9 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/collections/:name",
-                element: <PrivateRoute>
-                    <Collections></Collections>
-                </PrivateRoute>,
+                element: <Collections></Collections>,
                 loader: ({ params }) => fetch(`https://comfort-life-server.vercel.app/item/${params.name}`)
             },
             {
@@ -58,9 +55,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <PrivateRoute>
-            <Dashboard></Dashboard>
-        </PrivateRoute>,
+        element: <Dashboard></Dashboard>,
         children: [
             {
                 path: "/dashboard/add-item",

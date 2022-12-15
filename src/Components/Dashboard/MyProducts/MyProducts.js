@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: () =>
-            fetch(`https://comfort-life-server.vercel.app/furniture/${user.email}`)
+            fetch(`https://comfort-life-server.vercel.app/furniture/${user?.email}`)
                 .then(response => response.json())
     });
 

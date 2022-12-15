@@ -8,12 +8,12 @@ const Dashboard = () => {
     const { loader, user } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`https://comfort-life-server.vercel.app/users/${user.email}`)
+        fetch(`https://comfort-life-server.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setCurrentUser(data)
             });
-    }, [user.email])
+    }, [user?.email])
 
     // useEffect( () => {
     //     fetch('https://comfort-life-server.vercel.app/users')
@@ -35,23 +35,10 @@ const Dashboard = () => {
                     <label className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-primary text-2xl font-semibold bg-white">
                         <li>
-                            {
-                                currentUser?.type === "seller" &&
-                                <>
-                                    <Link to="/dashboard/add-item/">Add a Product</Link>
-                                    <Link to="/dashboard/my-products">My Products</Link>
-                                </>
-                            }
-                        </li>
-
-                        <li>
-                            {
-                                currentUser?.type === "buyer" &&
-                                <>
-                                    <Link to="/dashboard/my-orders">My Orders</Link>
-                                    <Link to="/dashboard/payment-history">Payment History</Link>
-                                </>
-                            }
+                            <Link to="/dashboard/add-item/">Add a Product</Link>
+                            <Link to="/dashboard/my-products">My Products</Link>
+                            <Link to="/dashboard/my-orders">My Orders</Link>
+                            <Link to="/dashboard/payment-history">Payment History</Link>
                         </li>
 
                         <li>
