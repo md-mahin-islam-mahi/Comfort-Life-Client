@@ -2,7 +2,7 @@ import React from 'react';
 
 const ExtraSection = () => {
     return (
-        <div className="footer p-10 bg-gray-100 text-primary-content my-20 rounded-lg">
+        <div className="footer p-10 bg-gray-100 text-primary-content my-20 mx-l-20 rounded-lg">
                 <div className='mx-auto lg:flex'>
                     <div className='text-center my-5'>
                         <h3 className="text-2xl text-gray-400 font-semibold pb-2 mb-3 border-b-2">Our Timing</h3>
