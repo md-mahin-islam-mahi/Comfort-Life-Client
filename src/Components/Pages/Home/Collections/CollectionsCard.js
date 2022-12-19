@@ -19,8 +19,8 @@ const CollectionsCard = ({ option, setFruniture }) => {
     return (
         <div>
             <div className="card w-96 h-full bg-base-100 shadow-xl">
-                <figure>
-                    <img className='h-80' src={image} alt={productName} />
+                <figure className=' overflow-hidden'>
+                    <img className='h-80 w-full' src={image} alt={productName} />
                 </figure>
                 <div className="card-body text-start">
                     <h2 className="text-2xl font-semibold text-gray-400">Product: {productName}</h2>
